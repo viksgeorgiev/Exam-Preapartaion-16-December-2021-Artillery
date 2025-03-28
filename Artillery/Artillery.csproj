@@ -8,14 +8,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Data.zip" />
+    <None Remove="zz_delete_obj_bin.bat" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="DataProcessor\ExportDto\" />
   </ItemGroup>
 
 </Project>
