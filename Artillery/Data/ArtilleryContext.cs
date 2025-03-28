@@ -1,21 +1,26 @@
-﻿namespace Artillery.Data
+﻿using Artillery.Data.Models;
+
+namespace Artillery.Data
 {
     using Microsoft.EntityFrameworkCore;
-    using System.Collections.Generic;
-    using System.Reflection.Emit;
 
     public class ArtilleryContext : DbContext
     {
-        public ArtilleryContext() 
-        { 
+        public ArtilleryContext()
+        {
         }
 
         public ArtilleryContext(DbContextOptions options)
-            : base(options) 
-        { 
+            : base(options)
+        {
         }
 
-         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        public virtual DbSet<Country> Countries { get; set; } = null!;
+        public virtual DbSet<CountryGun> CountriesGuns { get; set; } = null!;
+        public virtual DbSet<Gun> Guns { get; set; } = null!;
+        public virtual DbSet<Manufacturer> Manufacturers { get; set; } = null!;
+        public virtual DbSet<Shell> Shells { get; set; } = null!;
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
             {
@@ -26,6 +31,12 @@
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Manufacturer>()
+                .HasIndex(e => e.ManufacturerName)
+                .IsUnique();
+
+            modelBuilder.Entity<CountryGun>(e =>
+                e.HasKey(k => new { k.CountryId, k.GunId }));
         }
     }
 }

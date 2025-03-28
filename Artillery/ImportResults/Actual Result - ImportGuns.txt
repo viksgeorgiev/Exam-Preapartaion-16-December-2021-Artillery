@@ -1,4 +1,4 @@
-﻿Invalid data.
+Invalid data.
 Successfully import gun AntiTankGun with a total weight of 801684 kg. and barrel length of 31.18 m.
 Invalid data.
 Invalid data.
